@@ -5,9 +5,9 @@ const Sidebar = () => {
         <aside className="sidebar">
             <div className="sidebar-components">
                 <ul>
-                  <li><Link to="/">Home</Link></li>
-                  <li><Link to="/new-post">Create Post</Link></li>
-                  <li><Link to="/posts">View All Posts</Link></li>
+                  <li><Link to="/">Log In</Link></li>
+                  <li><Link to="/dashboard/new-post">Create Post</Link></li>
+                  <li><Link to="/dashboard">View All Posts</Link></li>
         
                 </ul>
             </div>

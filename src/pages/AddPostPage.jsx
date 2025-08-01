@@ -1,90 +1,67 @@
 import AddPostForm from "../components/AddPostForm";
 import { supabase } from "../client";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-const AddPostPage = () => {
-    const [loading, setLoading] = useState(false);
-    const [postData, setPostData] = useState({
-        user: '',
-        class: '',
-        title: '',
-        content: '',
-        user_img: '',
-    });
+const AddPostPage = ({ currentUser }) => {
+  const [loading, setLoading] = useState(false);
+  const [postData, setPostData] = useState({
+    post_type: '',
+    title: '',
+    content: '',
+  });
 
-    // const classOption = {
-    // Question: [
-    //   '<i class="fa-jelly-duo fa-regular fa-circle-question fa-lg" style="--fa-primary-color: #B197FC; --fa-secondary-color: #B197FC; --fa-secondary-opacity: 0.2;"></i>'
-    // ],
-    // Opinion: [
-    //  '<i class="fa-jelly-duo fa-regular fa-font-awesome fa-lg" style="--fa-primary-color: #74C0FC; --fa-secondary-color: #74C0FC; --fa-secondary-opacity: 0.2;"></i>'
-    // ],
-    // For_Sale: [
-    //   '<i class="fa-jelly-duo fa-regular fa-tag fa-lg" style="--fa-primary-color: #63E6BE; --fa-secondary-color: #63E6BE; --fa-secondary-opacity: 0.2;"></i>'
-    // ],
-    // };
+  const navigate = useNavigate();
 
-    const userAvatar = [
-            "/src/assets/girl-1.png",
-            "/src/assets/girl-2.png",
-            "/src/assets/girl-3.png",
-            "/src/assets/girl-4.png",
-            "/src/assets/boy-1.png",
-            "/src/assets/boy-2.png",
-            "/src/assets/boy-3.png",
-            "/src/assets/boy-4.png"
-        ]
+  const handleSumbit = async (event) => {
+    event.preventDefault();
+    if (!currentUser) {
+      alert("You must be logged in to create a post!");
+      return;
+    }
 
+    setLoading(true);
 
-    const addPost = async (event) => {
-        event.preventDefault();
-        setLoading(true);
-        const { data, error } = await supabase
-            .from('forum-posts')
-            .insert([postData]);
+    const { data, error } = await supabase
+      .from("posts")
+      .insert([{
+        ...postData,
+        user_id: currentUser.user_id,
+      }])
+      .select()
+      .single();
 
-            if (error) {
-                console.error('Error adding post:', error);
-            } else {
-                console.log('Post added:', data);
-             window.location = "/posts";
-            }
+    setLoading(false);
 
-        setLoading(false);
-            if (error) {
-                console.error('Error adding post:', error);  
-            } else {
-                console.log('Post added:', data);  
-                window.location = '/posts';
-            }
-    };
+    if (!error) {
+      console.log('Post added:', data);
+      console.log("Inserting post:", { ...postData, user_id: currentUser.user_id });
+      navigate("/dashboard"); 
+    } else {
+      console.error('Error adding post:', error);
+    }
+  };
 
-    const handleChange = (e) => {
-        setPostData({ ...postData, [e.target.name]: e.target.value });
-    };
+  const handleChange = (e) => {
+    setPostData({ ...postData, [e.target.name]: e.target.value });
+  };
 
-    const handleCategoryChange = (e) => {
-        setPostData(prev => ({ ...prev, class: e.target.value, user_img: '' }));
-    };
+  const handleCategoryChange = (e) => {
+    setPostData((prev) => ({ ...prev, post_type: e.target.value }));
+  };
 
-    const handleImageSelect = (img) => {
-        setPostData(prev => ({ ...prev, user_img: img }));
-    }; 
-
-    return ( 
-        <>
-            <h1>Add Post</h1>
-            <AddPostForm 
-                postData={postData}
-                handleImageSelect={handleImageSelect}
-                handleCategoryChange={handleCategoryChange}
-                handleChange={handleChange}
-                onSubmit={addPost}
-                userAvatar={userAvatar}
-                loading={loading}
-             />
-        </>
-     );
+  return ( 
+    <>
+      <h1>Add New Post</h1>
+      <AddPostForm 
+        postData={postData}
+        handleChange={handleChange}
+        handleCategoryChange={handleCategoryChange}
+        onSubmit={handleSumbit}
+        loading={loading}
+      />
+    </>
+  );
 }
  
 export default AddPostPage;

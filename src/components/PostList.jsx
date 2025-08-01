@@ -1,15 +1,12 @@
 import PostCard from './PostCard';
 
-function PostList({ postData }) {
-  if (!postData || postData.length === 0) {
-    return <p>No posts found!</p>;
-  }
+function PostList({ postData, currentUser }) {
 
   return (
   
     <div className="grid">
-      {postData.map((posts) => (
-        <PostCard key={posts.id} postData={posts} />
+      {postData.map((post) => (
+        <PostCard key={post.id} postData={post} currentUser={currentUser} />
       ))}
     </div>
     

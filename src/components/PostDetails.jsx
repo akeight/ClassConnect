@@ -1,21 +1,35 @@
 import { Link } from "react-router-dom";
 
-const PostDetails = ({postData}) => {
+const PostDetails = ({post, isOwner}) => {
 
-  const createdAtUTC = postData.created_at;
+  const author = post.user || {};
+
+  const createdAtUTC = post.created_at;
   const localDate = new Date(createdAtUTC);
   const formatted = localDate.toLocaleString();
 
   return (
-    <div className="card">
-      <img src={postData.user_img} alt={postData.user} />
-      <h2>{postData.user}</h2>
-      <p>Post Type: {postData.class}</p>
-      <p>Title: {postData.tilte}</p>
-      <p>Content: {postData.content}</p>
+    <div className="post-details">
+      {author.user_img && (
+        <img src={author.user_img}
+        className="avatar-large" />
+      )}
+     
+      <p>Post Type: {post.post_type}</p>
+      <p>Title: {post.title}</p>
+      <p>Content: {post.content}</p>
+
+      <small>
+        By {author.user_name || "Anonymous"} ({author.role || "guest"})
+      </small>
+
       <p>Created: {formatted}</p>
-      {/* Add more spicy details here */}
-      <Link to={`/edit/${postData.id}`}>Edit Post</Link>
+    
+      {isOwner && (
+      <div>
+        <Link to={`/edit/${post.id}`}>Edit Post</Link>
+      </div>
+      )}
     </div>
   );
 }

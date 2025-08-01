@@ -1,6 +1,6 @@
 import { useFormStatus } from "react-dom"
 
-function AddPostForm({ postData, handleChange, handleCategoryChange, handleImageSelect, onSubmit, userAvatar }) {
+function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) {
     const { pending } = useFormStatus();
 
   return (
@@ -11,80 +11,45 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, handleImage
       {/* 1. Category Selection */}
       <div className="category">
         <label>Choose Post Category:</label>
-        <select value={postData.class} onChange={handleCategoryChange} name="class">
+        <select value={postData.post_type} onChange={handleCategoryChange} name="post_type">
           <option value="">-- Select --</option>
           <option value="Question">Question</option>
-          <option value="Opinion">Opinion</option>
-          <option value="For_Sale">For Sale</option>
+          <option value="Announcement">Announcement</option>
+          <option value="Resource">Resource</option>
+          <option value="Random">Random</option>
+          <option value="Sign_Up">Sign Up</option>
         </select>
       </div>
 
       {/* 2. Show Image Options Based on Category */}
-      <div className="img-options">
-        
-          <div>
-            <label>Choose an Avatar:</label>
-              <div className="images">
-                {userAvatar?.map(img => (
-                  <img
-                    key={img}
-                    src={img}
-                    alt={postData.user || 'avatar'}
-                    style={{
-                      width: 100,
-                      height: 100,
-                      border: postData.user_img === img ? '3px solid #f57150ff' : '1px solid gray',
-                      cursor: 'pointer'
-                    }}
-                    onClick={() => handleImageSelect(img)}
-                  />
-                ))}
-              </div>
-          </div>
-      </div>
+    
 
       {/* 3. The rest of your attributes */}
-      {postData.user_img && (
-        <div className="inputs">
-          <label>Name:</label>
-          <input
-            type="text"
-            name="user"
-            placeholder="eg PookieFace"
-            value={postData.user}
-            onChange={handleChange}
-          />
-
-          <label>Title:</label>
+     
+      <div className="inputs">
+        
+        <label>Title:</label>
           <input
             type="text"
             name="title"
             value={postData.title}
             onChange={handleChange}
-          />
+        />
 
-          <label>Content:</label>
+        <label>Post Content:</label>
           <input
             type="text"
             name="content"
-            value={postData.content}
+            value={postData.content || ""}
             onChange={handleChange}
-          />
+        />
+      </div>
 
-          {/* <label>Speed:</label>
-          <input
-            type="number"
-            name="speed"
-            value={postData.speed}
-            onChange={handleChange}
-          /> */}
-          
-
-          <button type="submit" disabled={!postData.user || !postData.title || !postData.content || !postData.user_img}>
-            {pending ? "Adding..." : "Add Post!"}
-          </button>
-        </div>
-      )}
+      <div className="input-btns">
+        <button type="submit" disabled={!postData.title}>
+          {pending ? "Adding..." : "Add Post!"}
+        </button>
+      </div>
         
     </form>
     </>

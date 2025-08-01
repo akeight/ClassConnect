@@ -1,20 +1,14 @@
-const EditPostForm = ({ postData, setPostData, onSubmit, onDelete }) => {
+const EditPostForm = ({ postData, setPostData, onSubmit, onDelete, loading }) => {
   if (!postData) return <p>Loading post form…</p>;
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setPostData((prev) => ({ ...prev, [name]: value }));
+    setPostData({ ...postData, [e.target.name]: e.target.value });
   };
+
+
 
   return (
     <form onSubmit={onSubmit} className="hard-shadow">
-      <label>Name:</label>
-      <input
-        type="text"
-        name="user"
-        value={postData.user}
-        onChange={handleChange}
-      />
 
       <div className="category">
         <label>Choose Post Category:</label>
@@ -26,20 +20,11 @@ const EditPostForm = ({ postData, setPostData, onSubmit, onDelete }) => {
         </select>
       </div>
 
-      <label>Name:</label>
-        <input
-          type="text"
-          name="user"
-          placeholder="eg PookieFace"
-          value={postData.user}
-          onChange={handleChange}
-        />
-
       <label>Title:</label>
         <input
           type="text"
           name="title"
-          value={postData.title}
+          value={postData.title || ""}
           onChange={handleChange}
         />
 
@@ -47,14 +32,16 @@ const EditPostForm = ({ postData, setPostData, onSubmit, onDelete }) => {
         <input
           type="text"
           name="content"
-          value={postData.content}
+          value={postData.content || ""}
           onChange={handleChange}
         />
 
       {/* Add other fields here the same way */}
 
-      <input type="submit" value="Save Changes" />
-      <button type="button" className="deleteBtn" onClick={onDelete}>
+      <button type="submit" disabled={loading} value="Save Changes">
+        Save
+      </button>
+      <button type="button" className="deleteBtn" disabled={loading} onClick={onDelete}>
         Delete
       </button>
     </form>

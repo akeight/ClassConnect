@@ -1,95 +1,113 @@
 import EditPostForm from "../components/EditPostForm";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { supabase } from "../client";
 
-const EditPostPage = () => {
-    const { id } = useParams();
-    console.log("Edit route ID:", id);
-
+const EditPostPage = ({currentUser}) => {
     const [loading, setLoading] = useState(false);
     const [postData, setPostData] = useState({
-        user: '',
-        class: '',
-        title: '',
-        content: '',
-        user_img: '',
+        title: "",
+        content: "",
+        post_type: ""
     });
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchPost() {
             const { data, error } = await supabase
-                .from('forum-posts')
-                .select()
+                .from("posts")
+                .select(`
+                    *,
+                    user:user_id (user_name, role, user_img)
+                `)
                 .eq('id', id)
                 .single();
 
                 if (error) {
                     console.error('Error fetching post:', error);
+                    setLoading(false);
+                    return;
                 } else {
-                setPostData(data);
+                    setPostData({
+                        title: data.title || "",
+                        content: data.content || "",
+                        post_type: data.post_type || "",
+                    });
+                setLoading(false);
                 }
         }
-
         fetchPost();
         }, [id]);
 
 
-    const editPost = async (e) => {
-        e.preventDefault();
+    const handleUpdate = async (event) => {
+        console.log(currentUser);
+        event.preventDefault();
+        if (!currentUser) {
+            alert("You must be logged in to edit a post!");
+        return;
+        }
+
+        const user = Array.isArray(currentUser) ? currentUser[0] : currentUser;
+        
         setLoading(true);
+
         const { data, error } = await supabase
-            .from("forum-posts")
-            .update(postData) // character comes from state
+            .from("posts")
+            .update({
+                ...postData,
+                user_id: user.user_id,
+            }) 
+            .eq("id", id)
+            .select()
+            .single();
+
+        setLoading(false);
+
+        if (!error) {
+            console.log("Post updated:", data);
+            navigate(`/dashboard/post/${id}`);
+        } else {
+            console.error("Error updating post:", error);
+        }
+    };
+
+
+    const handleDelete = async () => {
+        if (!currentUser) {
+            alert("You must be logged in to delete a post!");
+            return;
+        }
+
+        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+            if (!confirmDelete) return;
+
+        const { error } = await supabase
+            .from("posts")
+            .delete()
             .eq("id", id);
 
-        if (error) {
-            console.error("Error updating post:", error);
+        if (!error) {
+            console.log("Post deleted");
+            navigate("/dashboard");
         } else {
-            console.log("Updated!", data);
-            window.location = "/posts";
-        }
-
-         setLoading(false);
-            if (error) {
-                console.error('Error adding post:', error);  
-            } else {
-                console.log('Post added:', data);  
-                window.location = '/posts';
-            }
-    };
-
-
-    const deletePost = async (e) => {
-        e.preventDefault();
-        setLoading(true);
-        const { error } = await supabase
-            .from('forum-posts')
-            .delete()
-            .eq('id', id);
-
-        if (error) {
             console.error("Error deleting post:", error);
-        } else {
-            window.location = '/posts';
         }
-        setLoading(false);
-            if (error) {
-                console.error('Error deleting post:', error);  
-            } else {
-                console.log('Post deleted:');  
-                window.location = '/posts';
-            }
     };
+
+    if (loading) return <p>Loading post...</p>;
+    if (!postData) return <p>Post not found.</p>;
+
     return ( 
         <>
             <h1>Edit Post</h1>
             <EditPostForm 
-            postData={postData} 
-            setPostData={setPostData} 
-            onSubmit={editPost} 
-            onDelete={deletePost}
-            loading={loading} />
+                postData={postData} 
+                setPostData={setPostData} 
+                onSubmit={handleUpdate} 
+                onDelete={handleDelete}
+            />
         </>
      );
 }
