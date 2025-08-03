@@ -51,8 +51,10 @@ const AddPostPage = ({ currentUser }) => {
   };
 
   return ( 
-    <>
-      <h1>Add New Post</h1>
+    <div className="card">
+      <div className="card-header">
+        <h1>Add New Post</h1>
+      </div>
       <AddPostForm 
         postData={postData}
         handleChange={handleChange}
@@ -60,7 +62,7 @@ const AddPostPage = ({ currentUser }) => {
         onSubmit={handleSumbit}
         loading={loading}
       />
-    </>
+    </div>
   );
 }
  

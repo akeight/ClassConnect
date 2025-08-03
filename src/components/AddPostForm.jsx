@@ -5,7 +5,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
 
   return (
     <>
-    <form onSubmit={onSubmit} className="hard-shadow">
+    <form onSubmit={onSubmit} className="add-post">
       <h1>Craft a Post</h1>
 
       {/* 1. Category Selection */}
@@ -31,6 +31,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
         <label>Title:</label>
           <input
             type="text"
+            className="input"
             name="title"
             value={postData.title}
             onChange={handleChange}
@@ -39,6 +40,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
         <label>Post Content:</label>
           <input
             type="text"
+            className="input"
             name="content"
             value={postData.content || ""}
             onChange={handleChange}
@@ -46,7 +48,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
       </div>
 
       <div className="input-btns">
-        <button type="submit" disabled={!postData.title}>
+        <button className="button" type="submit" disabled={!postData.title}>
           {pending ? "Adding..." : "Add Post!"}
         </button>
       </div>

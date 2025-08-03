@@ -20,7 +20,7 @@ const RightPanel = ({ role }) => {
   }, [role]);
 
   return (
-    <aside className="right-panel">
+    <aside className="card">
       <div className="panel-header">
         <h3>{role === "teacher" ? "Teacher Tools" : "Parent Tips"}</h3>
       </div>
@@ -35,9 +35,9 @@ const RightPanel = ({ role }) => {
 
       <div className="panel-footer">
         {role === "teacher" ? (
-          <button className="quick-action">+ Add Post</button>
+          <button className="button">+ Add Post</button>
         ) : (
-          <button className="quick-action">⭐ Favorite Post</button>
+          <button className="button">⭐ Favorite Post</button>
         )}
       </div>
     </aside>

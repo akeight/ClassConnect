@@ -4,7 +4,7 @@ function PostList({ postData, currentUser }) {
 
   return (
   
-    <div className="grid">
+    <div className="card">
       {postData.map((post) => (
         <PostCard key={post.id} postData={post} currentUser={currentUser} />
       ))}

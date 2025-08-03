@@ -32,11 +32,13 @@ const ViewAllPostsPage = ({currentUser}) => {
   return ( 
     <>
       {/* Left sidebar & right panel would be here if you want */}
-      <main className="main-content">
-        <h1>Community Posts</h1>
+      <div className="card">
+        <div className="card-header">
+            <h1>Class Posts</h1>
+        </div>
         <PostList postData={postData} currentUser={currentUser} />
         <Outlet />
-      </main>
+      </div>
     </>
   );
 }

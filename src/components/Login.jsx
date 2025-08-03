@@ -27,16 +27,21 @@ const Login = ({ onSubmit, loading }) => {
   };
 
   return (
-    <form className="login-form" onSubmit={handleSubmit}>
+    <div className="login-container">
+  <div className="card">
+    <div className="card-header">
       <h1>Parent-Teacher Connect</h1>
+    </div>
+    <form className="login-form" onSubmit={handleSubmit}>
+      
       <p>Enter your name, select your role, and choose an avatar:</p>
 
       <input
         type="text"
-        placeholder="Your Name"
+        placeholder="Enter your name"
         value={userName}
         onChange={(e) => setUserName(e.target.value)}
-        className="name-input"
+        className="input"
       />
 
       <div className="role-buttons">
@@ -67,7 +72,7 @@ const Login = ({ onSubmit, loading }) => {
               cursor: "pointer",
               border:
                 userImg === img
-                  ? "3px solid var(--primary)"
+                  ? "3px solid #000"
                   : "3px solid transparent",
               borderRadius: "50%",
               width: "60px",
@@ -78,10 +83,12 @@ const Login = ({ onSubmit, loading }) => {
         ))}
       </div>
 
-      <button type="submit" disabled={loading}>
+      <button className="button" type="submit" disabled={loading}>
         {loading ? "Creating Account..." : "Enter Dashboard"}
       </button>
     </form>
+    </div>
+    </div>
   );
 };
 

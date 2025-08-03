@@ -9,11 +9,15 @@ const DashboardPage = ({ role }) => {
     <>
         <Header />
         <div className="dashboard-layout">
-            <Sidebar role={role} />
-            <main className="main-content">
-                <Outlet /> {/* Renders nested dashboard pages */}
+            <aside className="sidebar">
+              <Sidebar role={role} />
+            </aside>
+            <main className="card">
+              <Outlet /> {/* Renders nested dashboard pages */}
             </main>
-            <RightPanel role={role} />
+            <aside className="right-panel">
+              <RightPanel role={role} />
+            </aside>
         </div>
     </>
   );
