@@ -8,43 +8,78 @@ const EditPostForm = ({ postData, setPostData, onSubmit, onDelete, loading }) =>
 
 
   return (
-    <form onSubmit={onSubmit} className="hard-shadow">
+    <>
+    <div className="card-header">
+      <h2>Edit Your Post</h2>
+      </div>
+    <form onSubmit={onSubmit} className="add-post">
 
       <div className="category">
         <label>Choose Post Category:</label>
-        <select value={postData.class} onChange={handleChange}>
+        <select value={postData.post_type} onChange={handleChange} name="post_type">
           <option value="">-- Select --</option>
           <option value="Question">Question</option>
-          <option value="Opinion">Opinion</option>
-          <option value="For_Sale">For Sale</option>
+          <option value="Announcement">Announcement</option>
+          <option value="Resource">Resource</option>
+          <option value="Random">Random</option>
+          <option value="Sign_Up">Sign Up</option>
         </select>
       </div>
 
-      <label>Title:</label>
-        <input
-          type="text"
-          name="title"
-          value={postData.title || ""}
-          onChange={handleChange}
-        />
+      <div className="inputs">
 
-      <label>Content:</label>
-        <input
-          type="text"
-          name="content"
-          value={postData.content || ""}
-          onChange={handleChange}
-        />
+      <div className="category"><label>Title:</label>
+            <input
+              type="text"
+              placeholder="required"
+              className="input"
+              name="title"
+              value={postData.title}
+              onChange={handleChange}
+          />
+        </div>
+
+      <div className="post-text">
+          
+          <label className="labels"><i class="fa-jelly fa-regular fa-lg fa-link"></i></label>
+            <input
+              type="text"
+              placeholder="image url (optional)"
+              className="input"
+              name="content_img"
+              value={postData.content_img || ""}
+              onChange={handleChange}
+          /> 
+          
+          </div>
+
+        <div className="post-content">
+          <div className="content"><label>Post Content:</label>
+            <textarea
+              rows="4"
+              cols="40"
+              placeholder="type content here... (optional)"
+              className="content-input"
+              name="content"
+              value={postData.content || ""}
+              onChange={handleChange}
+            />
+          </div>
+        
+        </div>
+       
+        </div>
 
       {/* Add other fields here the same way */}
 
-      <button type="submit" disabled={loading} value="Save Changes">
-        Save
+      <button className="button" type="submit" disabled={loading} value="Save Changes">
+       <i class="fa-jelly-duo fa-regular fa-lg fa-circle-plus"></i> Save
       </button>
-      <button type="button" className="deleteBtn" disabled={loading} onClick={onDelete}>
-        Delete
+      <button className="button" disabled={loading} onClick={onDelete}>
+       <i class="fa-jelly-duo fa-regular fa-lg fa-trash"></i> Delete
       </button>
     </form>
+    </>
   );
 };
 

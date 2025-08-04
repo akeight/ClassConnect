@@ -4,9 +4,9 @@ function PostList({ postData, currentUser }) {
 
   return (
   
-    <div className="card">
+    <div>
       {postData.map((post) => (
-        <PostCard key={post.id} postData={post} currentUser={currentUser} />
+        <PostCard key={post.id} post={post} currentUser={currentUser} />
       ))}
     </div>
     

@@ -36,6 +36,9 @@ const HomePage = ({ setCurrentUser }) => {
     }
   };
 
+  // ADD LOADER DELAY AND POSITION
+  if (loading) return <span class="loader-home"></span>;
+
   return (
       <Login onSubmit={handleLogin} loading={loading} />
    

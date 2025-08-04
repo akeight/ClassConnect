@@ -42,7 +42,7 @@ const EditPostPage = ({currentUser}) => {
 
 
     const handleUpdate = async (event) => {
-        console.log(currentUser);
+        
         event.preventDefault();
         if (!currentUser) {
             alert("You must be logged in to edit a post!");
@@ -101,7 +101,6 @@ const EditPostPage = ({currentUser}) => {
 
     return ( 
         <>
-            <h1>Edit Post</h1>
             <EditPostForm 
                 postData={postData} 
                 setPostData={setPostData} 

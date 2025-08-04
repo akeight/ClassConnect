@@ -9,6 +9,7 @@ const AddPostPage = ({ currentUser }) => {
     post_type: '',
     title: '',
     content: '',
+    content_img: '',
   });
 
   const navigate = useNavigate();
@@ -51,10 +52,7 @@ const AddPostPage = ({ currentUser }) => {
   };
 
   return ( 
-    <div className="card">
-      <div className="card-header">
-        <h1>Add New Post</h1>
-      </div>
+    
       <AddPostForm 
         postData={postData}
         handleChange={handleChange}
@@ -62,7 +60,7 @@ const AddPostPage = ({ currentUser }) => {
         onSubmit={handleSumbit}
         loading={loading}
       />
-    </div>
+  
   );
 }
  

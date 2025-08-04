@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+// import { Counter } from "./Counter";
 
 const PostDetails = ({post, isOwner}) => {
 
@@ -14,20 +15,27 @@ const PostDetails = ({post, isOwner}) => {
         <img src={author.user_img}
         className="avatar-large" />
       )}
-     
-      <p>Post Type: {post.post_type}</p>
-      <p>Title: {post.title}</p>
-      <p>Content: {post.content}</p>
+
+        {/* <div className="vote-container">
+          <Counter postId={post.id} />
+        </div> */}
+    
+      <h5>{post.post_type}</h5>
+      <h2>{post.title}</h2>
+      <p>{post.content}</p>
 
       <small>
-        By {author.user_name || "Anonymous"} ({author.role || "guest"})
+        Posted By: {author.user_name || "Anonymous"} ({author.role || "guest"})
+        Post id#: {post.id}
+        Created: {formatted}
       </small>
 
-      <p>Created: {formatted}</p>
-    
+      
       {isOwner && (
-      <div>
-        <Link to={`/edit/${post.id}`}>Edit Post</Link>
+      <div className="details-btn">
+        <button className="button">
+          <Link to={`/dashboard/edit/${post.id}`}><i class="fa-jelly-duo fa-regular fa-lg fa-pencil"></i> Edit Post</Link>
+        </button>
       </div>
       )}
     </div>

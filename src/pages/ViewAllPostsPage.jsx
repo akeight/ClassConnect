@@ -17,6 +17,9 @@ const ViewAllPostsPage = ({currentUser}) => {
         `)
         .order('created_at', { ascending: false });
 
+        console.log("Fetched posts:", data);
+        console.log("Supabase error:", error);
+
       if (!error && data) {
         setPostData(data);
         }
@@ -26,20 +29,23 @@ const ViewAllPostsPage = ({currentUser}) => {
     fetchPosts();
   }, []);
 
-    if (loading) return <p>Loading posts...</p>;
-    if (!postData || postData.length === 0) return <p>No posts found!</p>;
+   
+    // ADD LOADER DELAY AND POSITION
 
   return ( 
-    <>
-      {/* Left sidebar & right panel would be here if you want */}
-      <div className="card">
+      <>
         <div className="card-header">
-            <h1>Class Posts</h1>
+          <h1>Class Posts</h1>
         </div>
-        <PostList postData={postData} currentUser={currentUser} />
+
+        {loading && <span class="loader"></span>}
+        {!loading && (!postData || postData.length === 0) && <p>No posts found!</p>}
+        {!loading && postData.length > 0 && (
+          <PostList postData={postData} currentUser={currentUser} />
+        )}
+
         <Outlet />
-      </div>
-    </>
+      </>
   );
 }
 

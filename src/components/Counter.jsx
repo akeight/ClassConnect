@@ -24,9 +24,11 @@ const Counter = () => {
 
     return ( 
         <div className="votes">
-            <button onClick={upVote}><i class={`fa-jelly-duo fa-regular fa-lg fa-thumbs-up ${animUp}`}></i></button>
-            <button onClick={downVote}><i class={`fa-jelly-duo fa-regular fa-lg fa-thumbs-down ${animDown}`}></i></button>
-            <h5>{count}</h5>
+            <div>
+                <h3>{count}</h3>
+            </div>
+            <button className="vote-button" onClick={upVote}><i class={`fa-jelly-duo fa-regular fa-lg fa-thumbs-up ${animUp}`}></i></button>
+            <button className="vote-button" onClick={downVote}><i class={`fa-jelly-duo fa-regular fa-lg fa-thumbs-down ${animDown}`}></i></button>
         </div>
      );
 }

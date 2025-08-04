@@ -4,13 +4,13 @@ import Sidebar from "../components/Sidebar.jsx";
 import RightPanel from "../components/RightPanel.jsx";
 import Header from "../components/Header.jsx";
 
-const DashboardPage = ({ role }) => {
+const DashboardPage = ({ role, currentUser }) => {
   return (
     <>
         <Header />
         <div className="dashboard-layout">
             <aside className="sidebar">
-              <Sidebar role={role} />
+              <Sidebar role={role} currentUser={currentUser} />
             </aside>
             <main className="card">
               <Outlet /> {/* Renders nested dashboard pages */}

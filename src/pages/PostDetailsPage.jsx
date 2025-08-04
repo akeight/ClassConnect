@@ -33,15 +33,14 @@ const PostDetailsPage = ({currentUser}) => {
         fetchPost();
     }, [id]);
 
-   
-    if (loading) return <p>Loading post details…</p>;
+   // ADD LOADER DELAY AND POSITION
+    if (loading) return <span class="loader"></span>;
     if (!post) return <p>No post found!</p>;
 
     const isOwner = post?.user_id === currentUser?.user_id;
 
     return (
         <div>
-            <h2 className="home-landing">Post Details</h2>
             <PostDetails 
                 post={post}
                 isOwner={isOwner}
