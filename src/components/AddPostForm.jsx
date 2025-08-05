@@ -20,7 +20,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
           <option value="Resource">Resource</option>
           <option value="Random">Random</option>
           <option value="Sign_Up">Sign Up</option>
-          <option value="Repost">Sign Up</option>
+          <option value="Repost">Repost</option>
         </select>
       </div>
 

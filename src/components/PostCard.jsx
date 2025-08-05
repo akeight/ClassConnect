@@ -14,7 +14,7 @@ const PostCard = ({ post }) => {
                 <h3>{post.title}</h3>
 
                 <div className="vote-container">
-                    <Counter postId={post.id} />
+                    <Counter post={post} />
                 </div>
             </div>
 

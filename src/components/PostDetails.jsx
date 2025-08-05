@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+
 // import { Counter } from "./Counter";
 
 const PostDetails = ({post, isOwner}) => {
@@ -17,18 +18,24 @@ const PostDetails = ({post, isOwner}) => {
       )}
 
         {/* <div className="vote-container">
-          <Counter postId={post.id} />
+          <Counter postId={post} />
         </div> */}
     
       <h5>{post.post_type}</h5>
       <h2>{post.title}</h2>
-      <p>{post.content}</p>
 
-      <small>
-        Posted By: {author.user_name || "Anonymous"} ({author.role || "guest"})
-        Post id#: {post.id}
-        Created: {formatted}
-      </small>
+      {post.content_img && (
+      <div className="image-block">
+        <img src={post.content_img}></img>
+      </div>
+      )}
+      <h4>{post.content}</h4>
+
+      <div className="post-snips">
+        <p>Posted By:  <strong>{author.user_name || "Anonymous"} ({author.role || "guest"})</strong><br/>
+        Post id#:  <strong>{post.id}</strong><br/>
+        Created:  <strong>{formatted}</strong></p>
+      </div>
 
       
       {isOwner && (
@@ -38,6 +45,7 @@ const PostDetails = ({post, isOwner}) => {
         </button>
       </div>
       )}
+      
     </div>
   );
 }

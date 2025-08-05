@@ -1,28 +1,19 @@
-import { useEffect, useState } from "react";
 
-const RightPanel = ({ role }) => {
-  const [tips, setTips] = useState([]);
 
-  useEffect(() => {
-    if (role === "teacher") {
-      setTips([
-        "💡 Post updates for your class here.",
-        "📢 Pin important announcements for parents.",
-        "👀 View which parents have seen your posts.",
-      ]);
-    } else {
-      setTips([
+const RightPanel = () => {
+
+  const tips = [
         "💡 Check announcements from your child’s teacher.",
-        "📨 Message teachers for quick questions.",
-        "⭐ Bookmark posts to review later.",
-      ]);
-    }
-  }, [role]);
+        "📨 Sign Up for teacher requests.",
+        "⭐ Pin posts to review later.",
+        "📨 Leave a friendly comment.",
+      ];
+   
 
   return (
     <aside className="card">
       <div className="panel-header">
-        <h3>{role === "teacher" ? "Teacher Tools" : "Parent Tips"}</h3>
+        <h3>Tips</h3>
       </div>
 
       <ul className="tips-list">
@@ -34,11 +25,9 @@ const RightPanel = ({ role }) => {
       </ul>
 
       <div className="panel-footer">
-        {role === "teacher" ? (
-          <button className="button">+ Add Post</button>
-        ) : (
-          <button className="button">⭐ Favorite Post</button>
-        )}
+       
+          <button className="button">Pinned Posts</button>
+        
       </div>
     </aside>
   );

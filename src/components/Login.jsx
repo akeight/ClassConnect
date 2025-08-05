@@ -86,6 +86,7 @@ const Login = ({ onSubmit, loading }) => {
           <button className="button" type="submit" disabled={loading}>
             {loading ? "Creating Account..." : "Enter Dashboard"}
           </button>
+          {loading? <span class="loader-home"></span> : <span>Success!</span>}
         </form>
       </div>
     </div>

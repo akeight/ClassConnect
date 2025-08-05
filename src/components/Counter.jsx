@@ -1,34 +1,35 @@
 import { useState } from "react";
+import { supabase } from "../client"; 
 
 
-const Counter = () => {
-    const [count, setCount] = useState(0);
+const Counter = ({ post }) => {
+    const [count, setCount] = useState(post.upvote || 0);
     const [animUp, setAnimUp] = useState("");
-    const [animDown, setAnimDown] = useState("");
 
-    const upVote = () => {
-        setCount(count + 1);
+
+    const upVote = async () => {
+        const newCount = count + 1;
+        setCount(newCount);
         setAnimUp("fa-bounce");
         setTimeout(() => setAnimUp(""), 1000);
-    };
+       
 
-     const downVote = () => {
-        setCount(count - 1);
-        setAnimDown("fa-bounce");
-        setTimeout(() => setAnimDown(""), 1000);
-    };
+        const { error } = await supabase
+            .from("posts")
+            .update({ upvote: newCount })
+            .eq("id", post.id);
 
-    // const handleVote() => {
+        if (error) console.error("Upvote failed", error);
+};    
+    
 
-    // }
-
-    return ( 
+    return (
         <div className="votes">
             <div>
                 <h3>{count}</h3>
             </div>
             <button className="vote-button" onClick={upVote}><i class={`fa-jelly-duo fa-regular fa-lg fa-thumbs-up ${animUp}`}></i></button>
-            <button className="vote-button" onClick={downVote}><i class={`fa-jelly-duo fa-regular fa-lg fa-thumbs-down ${animDown}`}></i></button>
+    
         </div>
      );
 }
