@@ -7,6 +7,10 @@ const AddCommentForm = ({ postId, currentUser, onCommentAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!comment.trim()) return;
+    if (!currentUser) {
+        alert("User not logged in!");
+        return;
+    }
 
     // Insert comment into Supabase
     const { data, error } = await supabase
@@ -14,7 +18,7 @@ const AddCommentForm = ({ postId, currentUser, onCommentAdded }) => {
       .insert([
         {
           post_id: postId,
-          user_id: currentUser.id,
+          user_id: currentUser.user_id,
           content: comment,
         },
       ])
@@ -29,17 +33,23 @@ const AddCommentForm = ({ postId, currentUser, onCommentAdded }) => {
     }
   };
 
+   if (!currentUser) return <h3>Login to leave a comment.</h3>;
+
   return (
-    <form onSubmit={handleSubmit} className="add-comment-form">
-      <textarea
-        value={comment}
-        onChange={(e) => setComment(e.target.value)}
-        placeholder="Write a comment..."
-        rows={3}
-      />
-      <button type="submit">Add Comment</button>
-    </form>
+     <div className="post-details">
+        <form onSubmit={handleSubmit} className="add-post">
+            <textarea
+                className="content-input"
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                placeholder="Write a comment..."
+                rows={3}
+            />
+            <button className="button" type="submit">Add Comment</button>
+        </form>
+    </div>
   );
+    
 };
 
 export default AddCommentForm;

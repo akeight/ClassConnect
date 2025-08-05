@@ -3,8 +3,6 @@ import PostList from "../components/PostList";
 import { supabase } from "../client";
 import { useState, useEffect } from "react";
 import SortButtons from "../components/SortButtons";
-import ViewComments from "../components/ViewComments";
-import AddCommentForm from "../components/AddCommentForm";
 
 const ViewAllPostsPage = ({currentUser}) => {
   const { filters, setFilters } = useOutletContext();
@@ -74,10 +72,9 @@ const sortedPosts = [...filteredPosts].sort((a, b) => {
                   onChange={(e) => setFilters((prev) => ({ ...prev, searchTerm: e.target.value }))}
                 />
                 <button className="button"><i class="fa-jelly fa-regular fa-lg fa-magnifying-glass"></i></button>
+            
+                <SortButtons sortOption={sortOption} setSortOption={setSortOption} />
             </div>
-
-          <SortButtons sortOption={sortOption} setSortOption={setSortOption} />
-         
         </div>
 
         {loading && <span class="loader"></span>}

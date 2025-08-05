@@ -83,10 +83,12 @@ const Login = ({ onSubmit, loading }) => {
             ))}
           </div>
 
+          {loading && <span class="loader-home"></span>}
+          
           <button className="button" type="submit" disabled={loading}>
             {loading ? "Creating Account..." : "Enter Dashboard"}
           </button>
-          {loading? <span class="loader-home"></span> : <span>Success!</span>}
+          
         </form>
       </div>
     </div>

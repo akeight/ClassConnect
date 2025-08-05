@@ -195,6 +195,7 @@ body {
 
 .search {
   display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
@@ -245,6 +246,28 @@ main {
   margin-bottom: 0.5rem;
   font-size: 0.8rem;
   font-weight: 500;
+}
+
+.filters-aside {
+  background: #ffffffe6;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 1.5rem;
+  width: 225px;
+  margin: 1rem auto;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 4px 4px 0px black;
+}
+
+.filter-checkboxes {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
 }
 
 
@@ -373,6 +396,19 @@ form.add-post select {
   box-shadow: none;
 }
 
+.add-post-details {
+  background: #ffffffe6;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 1rem;
+  width: 485px;
+  margin: 1rem auto;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 4px 4px 0px black;
+}
+
 
 /* ===== Login Page ===== */
 
@@ -487,7 +523,6 @@ form.add-post select {
   width: 400px;
   margin: 1rem auto;
   text-align: center;
-  font-family: 'Arial Black', sans-serif;
   font-weight: bold;
   position: relative;
   box-shadow: 4px 4px 0px black;
@@ -511,12 +546,66 @@ form.add-post select {
 
 .details-btn {
   margin-top: 2rem;
+  gap: 2rem;
+}
+
+.edit {
+  background-color: #ffffff;
+  margin-right: 1rem;
+}
+
+.delete:hover {
+  background-color: #e35518;
 }
 
 .post-snips {
   font-weight: 100;
   font-size: .8rem;
   margin: 2rem 0 2rem 0;
+}
+
+/* ======= COmments ======== */
+
+.comments-section {
+  background: #ffffffe6;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 1.5rem;
+  width: 400px;
+  margin: 1rem auto;
+  text-align: center;
+  font-weight: bold;
+  position: relative;
+  box-shadow: 4px 4px 0px black;
+}
+
+.comment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 0.75rem;
+}
+
+.comment-avatar {
+  width: 50px;
+  height: 50px;
+}
+
+.comment-header {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment p {
+  font-size: small;
+  font-weight: 300;
+}
+.comment-content {
+  text-align: right;
+  padding: 0.5rem;
 }
 
 /* ====== Counter ======== */

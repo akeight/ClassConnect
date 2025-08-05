@@ -1,4 +1,4 @@
-const EditPostForm = ({ postData, setPostData, onSubmit, onDelete, loading }) => {
+const EditPostForm = ({ postData, setPostData, onSubmit, loading }) => {
   if (!postData) return <p>Loading post form…</p>;
 
   const handleChange = (e) => {
@@ -9,13 +9,14 @@ const EditPostForm = ({ postData, setPostData, onSubmit, onDelete, loading }) =>
 
   return (
     <>
-    <div className="card-header">
-      <h2>Edit Your Post</h2>
-      </div>
-    <form onSubmit={onSubmit} className="add-post">
+      <div className="post-details">
+        <div className="card-header">
+           <h2>Edit Your Post</h2>
+        </div>
+      <form onSubmit={onSubmit} className="add-post">
 
       <div className="category">
-        <label>Choose Post Category:</label>
+        <label>Post Category:</label>
         <select value={postData.post_type} onChange={handleChange} name="post_type">
           <option value="">-- Select --</option>
           <option value="Question">Question</option>
@@ -57,7 +58,7 @@ const EditPostForm = ({ postData, setPostData, onSubmit, onDelete, loading }) =>
           <div className="content"><label>Post Content:</label>
             <textarea
               rows="4"
-              cols="40"
+              cols="30"
               placeholder="type content here... (optional)"
               className="content-input"
               name="content"
@@ -75,10 +76,7 @@ const EditPostForm = ({ postData, setPostData, onSubmit, onDelete, loading }) =>
       <button className="button" type="submit" disabled={loading} value="Save Changes">
        <i class="fa-jelly-duo fa-regular fa-lg fa-circle-plus"></i> Save
       </button>
-      <button className="button" disabled={loading} onClick={onDelete}>
-       <i class="fa-jelly-duo fa-regular fa-lg fa-trash"></i> Delete
-      </button>
-    </form>
+    </form></div>
     </>
   );
 };

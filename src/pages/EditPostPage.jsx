@@ -74,28 +74,6 @@ const EditPostPage = ({currentUser}) => {
     };
 
 
-    const handleDelete = async () => {
-        if (!currentUser) {
-            alert("You must be logged in to delete a post!");
-            return;
-        }
-
-        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
-            if (!confirmDelete) return;
-
-        const { error } = await supabase
-            .from("posts")
-            .delete()
-            .eq("id", id);
-
-        if (!error) {
-            console.log("Post deleted");
-            navigate("/dashboard");
-        } else {
-            console.error("Error deleting post:", error);
-        }
-    };
-
     if (loading) return <p>Loading post...</p>;
     if (!postData) return <p>Post not found.</p>;
 
@@ -105,7 +83,6 @@ const EditPostPage = ({currentUser}) => {
                 postData={postData} 
                 setPostData={setPostData} 
                 onSubmit={handleUpdate} 
-                onDelete={handleDelete}
             />
         </>
      );

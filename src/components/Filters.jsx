@@ -2,14 +2,14 @@ const Filters = ({ filters, setFilters }) => {
     
   return (
     <div className="filters-aside">
-      <h2>
+      <h3>
         Filter Posts
         <label>
           <i className="fa-jelly fa-regular fa-lg fa-filter"></i>
         </label>
-      </h2>
+      </h3>
 
-      <div className="filter-search">
+      <div className="post-content">
         <div className="filter-checkboxes">
           <label>
             <input
@@ -25,7 +25,7 @@ const Filters = ({ filters, setFilters }) => {
                 }))
               }
             />
-            <i className="fa-jelly-duo fa-regular fa-font-awesome"></i> Announcements
+            <i className="fa-jelly-duo fa-regular fa-lg fa-font-awesome"></i> <h4>Announcements</h4>
           </label>
 
           <label>
@@ -42,7 +42,7 @@ const Filters = ({ filters, setFilters }) => {
                 }))
               }
             />
-            <i className="fa-jelly-duo fa-regular fa-pencil"></i> Sign Ups
+            <i className="fa-jelly-duo fa-regular fa-lg fa-pencil"></i> <h4>Sign Ups</h4>
           </label>
 
           <label>
@@ -59,7 +59,7 @@ const Filters = ({ filters, setFilters }) => {
                 }))
               }
             />
-            <i className="fa-jelly-duo fa-regular fa-question"></i> Questions
+            <i className="fa-jelly-duo fa-regular fa-lg fa-question"></i> <h4>Questions</h4>
           </label>
         </div>
       </div>

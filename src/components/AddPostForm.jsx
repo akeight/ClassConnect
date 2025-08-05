@@ -5,6 +5,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
 
   return (
     <>
+      <div className="add-post-details">
       <div className="card-header">
          <h1>Craft New Post</h1>
       </div>
@@ -69,7 +70,7 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
           <div className="content"><label>Post Content:</label>
             <textarea
               rows="4"
-              cols="40"
+              cols="30"
               placeholder="type content here... (optional)"
               className="content-input"
               name="content"
@@ -80,13 +81,14 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
         </div>
       </div>
 
-      <div className="role-buttons">
+      <div className="">
         <button className="button" type="submit" disabled={!postData.title}>
           <i class="fa-jelly fa-regular fa-xl fa-circle-plus"></i> {pending ? "Adding..." : "Add Post!"}
         </button>
       </div>
         
     </form>
+    </div>
     </>
   );
 };

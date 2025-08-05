@@ -1,15 +1,17 @@
 import PostDetails from "../components/PostDetails";
-import {useParams, Outlet} from "react-router-dom"
+import {useParams, Outlet, useNavigate} from "react-router-dom"
 import { useState, useEffect } from "react";
 import { supabase } from "../client";
 import AddCommentForm from "../components/AddCommentForm";
 import ViewComments from "../components/ViewComments";
 
 const PostDetailsPage = ({currentUser}) => {
-    const { id } = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [comments, setComments] = useState([]);
+
+    const { id } = useParams();
+    const navigate = useNavigate();
 
     useEffect(() => {
         async function fetchPost() {
@@ -29,44 +31,50 @@ const PostDetailsPage = ({currentUser}) => {
             setPost(data);
             console.log(data);
             
+            // Fetch comments for this post
+            const { data: commentData } = await supabase
+                .from('comments')
+                .select(`
+                    *,
+                    user:user_id (user_name, user_img)
+                `)
+                .eq('post_id', data.id);
+
+            setComments(commentData || []);
         }
+
         setLoading(false);
         }
 
         fetchPost();
     }, [id]);
 
-   useEffect(() => {
-  async function fetchPostAndComments() {
-    const { data: postData, error } = await supabase
-      .from('posts')
-      .select(`
-        *,
-        user:user_id (user_name, user_img)
-      `)
-      .eq('id', postId)  // use your route param here
-      .single();
+    const handleNewComment = (newComment) => {
+    setComments((prev) => [...prev, newComment]);
+  };
 
-    if (postData) {
-      setPost(postData);
+  const handleDelete = async () => {
+        if (!currentUser) {
+            alert("You must be logged in to delete a post!");
+            return;
+        }
 
-      // Fetch comments only **after** post exists
-      const { data: commentData } = await supabase
-        .from('comments')
-        .select(`
-          *,
-          user:user_id (user_name, user_img)
-        `)
-        .eq('post_id', postData.id);
+        const confirmDelete = window.confirm("Are you sure you want to delete this post?");
+            if (!confirmDelete) return;
 
-      setComments(commentData || []);
-    }
+        const { error } = await supabase
+            .from("posts")
+            .delete()
+            .eq("id", id);
 
-    setLoading(false);
-  }
+        if (!error) {
+            console.log("Post deleted");
+            navigate("/dashboard");
+        } else {
+            console.error("Error deleting post:", error);
+        }
+    };
 
-  fetchPostAndComments();
-}, [postId]);
 
    // ADD LOADER DELAY AND POSITION
     if (loading) return <span class="loader"></span>;
@@ -80,17 +88,18 @@ const PostDetailsPage = ({currentUser}) => {
             <PostDetails 
                 post={post}
                 isOwner={isOwner}
+                onDelete={handleDelete}
             />
             <div className="primary-content">
                 <Outlet />
             </div>
 
             <div className="comment-form">
-                <h3>Add Comment</h3>
+        
                 <AddCommentForm
                     postId={post.post_id}
                     currentUser={currentUser}
-                    onCommentAdded={(newComment) => setComments((prev) => [...prev, newComment])}
+                    onCommentAdded={handleNewComment}
                 />
                 <ViewComments comments={comments} />
             </div>

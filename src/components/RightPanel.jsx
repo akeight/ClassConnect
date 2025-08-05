@@ -25,9 +25,6 @@ const RightPanel = () => {
       </ul>
 
       <div className="panel-footer">
-       
-          <button className="button">Pinned Posts</button>
-        
       </div>
     </aside>
   );

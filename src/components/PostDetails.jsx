@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
+import Counter from "./Counter";
 
-// import { Counter } from "./Counter";
 
-const PostDetails = ({post, isOwner}) => {
+const PostDetails = ({post, isOwner, onDelete, loading}) => {
 
   const author = post.user || {};
 
@@ -37,11 +37,18 @@ const PostDetails = ({post, isOwner}) => {
         Created:  <strong>{formatted}</strong></p>
       </div>
 
+      <div className="vote-container">
+          <Counter post={post} />
+      </div>
+
       
       {isOwner && (
       <div className="details-btn">
-        <button className="button">
+        <button className="button edit">
           <Link to={`/dashboard/edit/${post.id}`}><i class="fa-jelly-duo fa-regular fa-lg fa-pencil"></i> Edit Post</Link>
+        </button>
+        <button className="button delete" disabled={loading} onClick={onDelete}>
+          <i class="fa-jelly-duo fa-regular fa-lg fa-trash"></i> Delete
         </button>
       </div>
       )}
