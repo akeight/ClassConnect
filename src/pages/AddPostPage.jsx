@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddPostPage = ({ currentUser }) => {
   const [loading, setLoading] = useState(false);
+  const [repostId, setRepostId] = useState("");
   const [postData, setPostData] = useState({
     post_type: '',
     title: '',
@@ -28,6 +29,7 @@ const AddPostPage = ({ currentUser }) => {
       .insert([{
         ...postData,
         user_id: currentUser.user_id,
+        repost_id: repostId || null,
       }])
       .select()
       .single();
@@ -59,6 +61,8 @@ const AddPostPage = ({ currentUser }) => {
         handleCategoryChange={handleCategoryChange}
         onSubmit={handleSumbit}
         loading={loading}
+        repostId={repostId}
+        setRepostId={setRepostId}
       />
   
   );

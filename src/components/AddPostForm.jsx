@@ -1,6 +1,6 @@
 import { useFormStatus } from "react-dom"
 
-function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) {
+function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit, repostId, setRepostId}) {
     const { pending } = useFormStatus();
 
   return (
@@ -60,9 +60,9 @@ function AddPostForm({ postData, handleChange, handleCategoryChange, onSubmit}) 
               type="text"
               placeholder="repost post id# (optional)"
               className="input"
-              name="content"
-              value={postData.id || ""}
-              onChange={handleChange}
+              name="repost_id"
+              value={repostId || ""}
+              onChange={(e) => setRepostId(e.target.value)}
           />
         </div>
 

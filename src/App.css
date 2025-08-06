@@ -565,6 +565,14 @@ form.add-post select {
   box-shadow: 4px 4px 0px black;
 }
 
+.post-type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin: 0.75rem;
+}
+
 .post-details h2 {
   margin-top: 1rem;
   font-size: 1.4rem;
@@ -761,6 +769,7 @@ form.add-post select {
   border-left: 20px solid var(--repost-border); 
   background-color: #FFF; 
   padding: 1rem;
+  margin-top: 1rem;
 }
 
 .repost-header {
@@ -787,4 +796,15 @@ form.add-post select {
   max-width: 100%;
   margin-top: 0.5rem;
   border-radius: 6px;
+}
+
+.repost-link {
+  margin: 1rem;
+}
+
+.repost-date {
+  font-size: small;
+  font-weight: 100;
+  font-style: italic;
+  margin-bottom: 1rem;
 }

@@ -20,7 +20,15 @@ const PostDetailsPage = ({currentUser}) => {
             .select(`
                 id, title, content, post_type, created_at,
                 user_id, content_img, upvote,
-                user:user_id (user_name, role, user_img)
+                user:user_id (user_name, role, user_img),
+                repost:repost_id (
+                  id,
+                  title,
+                  content,
+                  content_img,
+                  created_at,
+                  user:user_id (user_name, user_img)
+                )
             `)
             .eq('id', id)
             .single();
