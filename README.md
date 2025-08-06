@@ -72,14 +72,14 @@ Here's a walkthrough of implemented user stories:
 <img src='./public/ClassConnect.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 
-GIF created with ...  git
+GIF created with ...
 
 [Kap](https://getkap.co/) for macOS
 
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+I started to struggle with it right near the end- after completing all the feature options. I think it broke during the repost phase. Panicked, I switched back to a previous commit...but that only made things harder. Besides all that struggle, I had a lot of fun putting this together. I'm hoping to improve it in the next couple days even more- especially with all the hard work and hours I put into it this week.
 
 ## License
 
