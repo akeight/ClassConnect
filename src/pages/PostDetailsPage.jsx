@@ -19,7 +19,7 @@ const PostDetailsPage = ({currentUser}) => {
             .from("posts")
             .select(`
                 id, title, content, post_type, created_at,
-                user_id,
+                user_id, content_img,
                 user:user_id (user_name, role, user_img)
             `)
             .eq('id', id)

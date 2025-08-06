@@ -54,10 +54,14 @@ const filteredPosts = postData.filter((post) => {
 const sortedPosts = [...filteredPosts].sort((a, b) => {
   if (sortOption === "newest") {
     return new Date(b.created_at) - new Date(a.created_at);
-  } else {
+  } else if (sortOption === "oldest") {
     return new Date(a.created_at) - new Date(b.created_at);
+  } else if (sortOption === "upvotes") {
+    return (b.upvote || 0) - (a.upvote || 0);
   }
+  return 0;
 });
+
 
   return ( 
       <>

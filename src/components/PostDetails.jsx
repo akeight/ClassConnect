@@ -16,16 +16,12 @@ const PostDetails = ({post, isOwner, onDelete, loading}) => {
         <img src={author.user_img}
         className="avatar-large" />
       )}
-
-        {/* <div className="vote-container">
-          <Counter postId={post} />
-        </div> */}
     
       <h5>{post.post_type}</h5>
       <h2>{post.title}</h2>
 
       {post.content_img && (
-      <div className="image-block">
+      <div className="post-image">
         <img src={post.content_img}></img>
       </div>
       )}

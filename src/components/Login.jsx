@@ -30,7 +30,7 @@ const Login = ({ onSubmit, loading }) => {
     <div className="login-container">
       <div className="card">
         <div className="card-header">
-          <h1>Parent-Teacher Connect</h1> 
+          <h1>ClassConnect</h1><br />
           <p>Enter your name, select your role, and choose an avatar:</p>
         </div>
 
