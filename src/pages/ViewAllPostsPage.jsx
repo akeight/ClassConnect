@@ -32,35 +32,35 @@ const ViewAllPostsPage = ({currentUser}) => {
     fetchPosts();
   }, []);
 
- // 1. Filter posts
-const filteredPosts = postData.filter((post) => {
-  // Filter by post_type checkboxes
-  const activeFilters = Object.entries(filters.post_type || {})
-    .filter(([_, value]) => value)
-    .map(([key]) => key);
+  // 1. Filter posts
+  const filteredPosts = postData.filter((post) => {
+    // Filter by post_type checkboxes
+    const activeFilters = Object.entries(filters.post_type || {})
+      .filter(([_, value]) => value)
+      .map(([key]) => key);
 
-  const typeMatches =
-    activeFilters.length === 0 || activeFilters.includes(post.post_type);
+    const typeMatches =
+      activeFilters.length === 0 || activeFilters.includes(post.post_type);
 
-  // Filter by search term in title
-  const searchTerm = filters.searchTerm?.toLowerCase() || "";
-  const searchMatches =
-    searchTerm === "" || post.title?.toLowerCase().includes(searchTerm);
+    // Filter by search term in title
+    const searchTerm = filters.searchTerm?.toLowerCase() || "";
+    const searchMatches =
+      searchTerm === "" || post.title?.toLowerCase().includes(searchTerm);
 
-  return typeMatches && searchMatches;
-});
+    return typeMatches && searchMatches;
+    });
 
-// 2. Sort filtered posts
-const sortedPosts = [...filteredPosts].sort((a, b) => {
-  if (sortOption === "newest") {
-    return new Date(b.created_at) - new Date(a.created_at);
-  } else if (sortOption === "oldest") {
-    return new Date(a.created_at) - new Date(b.created_at);
-  } else if (sortOption === "upvotes") {
-    return (b.upvote || 0) - (a.upvote || 0);
-  }
-  return 0;
-});
+  // 2. Sort filtered posts
+  const sortedPosts = [...filteredPosts].sort((a, b) => {
+    if (sortOption === "newest") {
+      return new Date(b.created_at) - new Date(a.created_at);
+    } else if (sortOption === "oldest") {
+      return new Date(a.created_at) - new Date(b.created_at);
+    } else if (sortOption === "upvotes") {
+      return (b.upvote || 0) - (a.upvote || 0);
+    }
+    return 0;
+    });
 
 
   return ( 

@@ -19,7 +19,7 @@ const PostDetailsPage = ({currentUser}) => {
             .from("posts")
             .select(`
                 id, title, content, post_type, created_at,
-                user_id, content_img,
+                user_id, content_img, upvote,
                 user:user_id (user_name, role, user_img)
             `)
             .eq('id', id)
@@ -38,9 +38,12 @@ const PostDetailsPage = ({currentUser}) => {
                     *,
                     user:user_id (user_name, user_img)
                 `)
-                .eq('post_id', data.id);
+                
+                .eq('post_id', data.id)
+                .order('created_at', { ascending: true });
 
             setComments(commentData || []);
+            console.log(commentData);
         }
 
         setLoading(false);
@@ -97,7 +100,7 @@ const PostDetailsPage = ({currentUser}) => {
             <div className="comment-form">
         
                 <AddCommentForm
-                    postId={post.post_id}
+                    postId={post.id}
                     currentUser={currentUser}
                     onCommentAdded={handleNewComment}
                 />

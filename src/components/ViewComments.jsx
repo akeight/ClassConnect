@@ -17,6 +17,7 @@ const ViewComments = ({ comments }) => {
             <h5>{c.user?.user_name || "Unknown User"}</h5>
           </div>
           <div className="comment-content">
+            <i class="fa-jelly fa-regular fa-lg fa-comment"></i>
             <p>{c.content}</p>
           </div>
         </div>

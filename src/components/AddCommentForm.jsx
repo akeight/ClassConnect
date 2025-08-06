@@ -25,9 +25,10 @@ const AddCommentForm = ({ postId, currentUser, onCommentAdded }) => {
       .select(`
         *,
         user:user_id (user_name, user_img)
-      `);
+      `)
 
     if (!error) {
+      console.log("AddCommentForm postId:", postId);
       setComment("");
       onCommentAdded(data[0]); // callback to refresh ViewComments
     }
@@ -45,7 +46,7 @@ const AddCommentForm = ({ postId, currentUser, onCommentAdded }) => {
                 placeholder="Write a comment..."
                 rows={3}
             />
-            <button className="button" type="submit">Add Comment</button>
+            <button className="button" type="submit">Add Comment <i class="fa-jelly fa-regular fa-lg fa-comment-dots"></i></button>
         </form>
     </div>
   );

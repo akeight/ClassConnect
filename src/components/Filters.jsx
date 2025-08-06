@@ -14,6 +14,7 @@ const Filters = ({ filters, setFilters }) => {
           <label>
             <input
               type="checkbox"
+              className="checkbox"
               checked={filters.post_type.Announcement}
               onChange={() =>
                 setFilters((prev) => ({
@@ -31,6 +32,7 @@ const Filters = ({ filters, setFilters }) => {
           <label>
             <input
               type="checkbox"
+              className="checkbox"
               checked={filters.post_type.Sign_Up}
               onChange={() =>
                 setFilters((prev) => ({
@@ -48,6 +50,7 @@ const Filters = ({ filters, setFilters }) => {
           <label>
             <input
               type="checkbox"
+              className="checkbox"
               checked={filters.post_type.Question}
               onChange={() =>
                 setFilters((prev) => ({
