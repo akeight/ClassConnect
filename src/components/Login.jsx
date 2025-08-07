@@ -1,4 +1,12 @@
 import { useState } from "react";
+import boy1 from "./assets/boy-1.png";
+import boy2 from "./assets/boy-2.png";
+import boy3 from "./assets/boy-3.png";
+import boy4 from "./assets/boy-4.png";
+import girl1 from "./assets/girl1.png";
+import girl2 from "./assets/girl1.png";
+import girl3 from "./assets/girl1.png";
+import girl4 from "./assets/girl1.png";
 
 const Login = ({ onSubmit, loading }) => {
   const [userName, setUserName] = useState("");
@@ -6,14 +14,14 @@ const Login = ({ onSubmit, loading }) => {
   const [userImg, setUserImg] = useState("");
 
   const userAvatars = [
-    "/src/assets/girl-1.png",
-    "/src/assets/girl-2.png",
-    "/src/assets/girl-3.png",
-    "/src/assets/girl-4.png",
-    "/src/assets/boy-1.png",
-    "/src/assets/boy-2.png",
-    "/src/assets/boy-3.png",
-    "/src/assets/boy-4.png",
+    girl1,
+    girl2,
+    girl3,
+    girl4,
+    boy1,
+    boy2,
+    boy3,
+    boy4,
   ];
 
   const handleSubmit = (e) => {
