@@ -25,8 +25,7 @@ const PostDetails = ({post, isOwner, onDelete, loading}) => {
   return (
     <div className="post-details">
       {author.user_img && (
-        <img src={author.user_img}
-        className="avatar-large" />
+        <img src={author.user_img} className="avatar-large" />
       )}
     
       <div className="post-type">
