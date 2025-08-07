@@ -38,7 +38,9 @@ const HomePage = ({ setCurrentUser }) => {
 
 
   return (
+    <div className="home-page">
       <Login onSubmit={handleLogin} loading={loading} />
+    </div>
    
   );
 };

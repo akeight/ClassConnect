@@ -4,7 +4,7 @@ Submitted by: **Allyson Keightley**
 
 This web app: **ClassConnect is a collaborative class forum web app where students and teachers can connect! They can post questions, share resources, make announcements, and engage with peers. It features live filtering, searching, sorting by upvotes, and repost functionality, making it easy to stay connected and organized in any class environment.**
 
-Time spent: **50** hours spent in total
+Time spent: **54** hours spent in total
 
 ## Required Features
 
@@ -49,10 +49,10 @@ The following **optional** features are implemented:
   - Users can only edit and delete posts or delete comments by entering the secret key, which is set by the user during post creation
   - **or** upon launching the web app, the user is assigned a random user ID. It will be associated with all posts and comments that they make and displayed on them
   - For both options, only the original user author of a post can update or delete it
-- [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post
+- [x] Users can repost a previous post by referencing its post ID. On the post page of the new post
   - Users can repost a previous post by referencing its post ID
   - On the post page of the new post, the referenced post is displayed and linked, creating a thread
-- [ ] Users can customize the interface
+- [x] Users can customize the interface
   - e.g., selecting the color scheme or showing the content and image of each post on the home feed
 - [x] Users can add more characterics to their posts
   - Users can share and view web videos
