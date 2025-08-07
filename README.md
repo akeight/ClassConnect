@@ -2,7 +2,7 @@
 
 Submitted by: **Allyson Keightley**
 
-This web app: **ClassConnect is a collaborative class forum web app where students and teachers can connect! They can post questions, share resources, make announcements, and engage with peers. It features live filtering, searching, sorting by upvotes, and repost functionality, making it easy to stay connected and organized in any class environment.**
+This web app: **ClassConnect is a collaborative class forum web app where students and teachers can connect! They can post questions, share resources, make announcements, repost other's posts and engage with peers. It features live filtering, searching, sorting by upvotes, and repost functionality, making it easy to stay connected and organized in any class environment.**
 
 Time spent: **54** hours spent in total
 
