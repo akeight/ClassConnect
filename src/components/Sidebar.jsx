@@ -8,9 +8,9 @@ const Sidebar = ({currentUser, filters, setFilters}) => {
                 <div className="sidebar-components">
                     <h3>Hello, {currentUser?.user_name || "Guest"}</h3>
                     <ul>
-                    <li className="button"><i class="fa-jelly-duo fa-regular fa-lg fa-house"></i> <Link to="/">Log In</Link></li>
-                    <li className="button"><i class="fa-jelly-duo fa-regular fa-lg fa-plus"></i> <Link to="/dashboard/new-post">Create Post</Link></li>
-                    <li className="button"><i class="fa-jelly-duo fa-regular fa-lg fa-expand"></i> <Link to="/dashboard">All Posts</Link></li>
+                    <Link to="/"><li className="button"><i class="fa-jelly-duo fa-regular fa-lg fa-house"></i>Log In</li></Link>
+                    <Link to="/dashboard/new-post"><li className="button"><i class="fa-jelly-duo fa-regular fa-lg fa-plus"></i>Create Post</li></Link>
+                    <Link to="/dashboard"><li className="button"><i class="fa-jelly-duo fa-regular fa-lg fa-expand"></i>All Posts</li></Link>
         
                     </ul>
                 </div>
