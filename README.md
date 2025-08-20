@@ -1,10 +1,11 @@
-# Web Development Final Project - *ClassConnect*
+# *ClassConnect*
+[View Deployed App](https://classconnecthub.netlify.app)
 
 Submitted by: **Allyson Keightley**
 
 This web app: **ClassConnect is a collaborative class forum web app where students and teachers can connect! They can post questions, share resources, make announcements, repost other's posts and engage with peers. It features live filtering, searching, sorting by upvotes, repost functionality, and a custom, playful UI, making it easy to stay connected and organized in any class environment.**
 
-Time spent: **54** hours spent in total
+Time spent: **35** hours spent in total
 
 ## Required Features
 
@@ -61,9 +62,6 @@ The following **optional** features are implemented:
   - Users can upload images directly from their local machine as an image file
 - [x] Web app displays a loading animation whenever data is being fetched
 
-The following **additional** features are implemented:
-
-* [ ] List anything else that you added to improve the site's functionality!
 
 ## Video Walkthrough
 
@@ -79,7 +77,7 @@ GIF created with ...
 
 ## Notes
 
-I started to struggle with it right near the end- after completing all the feature options. I think it broke during the repost phase. Panicked, I switched back to a previous commit...but that only made things harder. Besides all that struggle, I had a lot of fun putting this together. I'm hoping to improve it in the next couple days even more- especially with all the hard work and hours I put into it this week.
+I started to struggle with it right near the end- after completing all the feature options. I think it broke during the repost phase. Panicked, I switched back to a previous commit...but that only made things harder. Besides all that struggle, I had a lot of fun putting this together. My final score reflected all my hard work, with 65/45 points recieved.
 
 ## License
 
